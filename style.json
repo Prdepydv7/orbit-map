@@ -1,0 +1,44 @@
+{
+  "version": 8,
+  "name": "Dyntrix Futuristic Dark 3D",
+  "sources": {
+    "orbit-india-source": {
+      "type": "vector",
+      "url": "pmtiles://https://orbit-map-server.netlify.app/india_map.pmtiles"
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": { "background-color": "#0B0F19" }
+    },
+    {
+      "id": "water",
+      "type": "fill",
+      "source": "orbit-india-source",
+      "source-layer": "water",
+      "paint": { "fill-color": "#1E293B" }
+    },
+    {
+      "id": "roads",
+      "type": "line",
+      "source": "orbit-india-source",
+      "source-layer": "transportation",
+      "paint": { "line-color": "#1F2937", "line-width": 1.5 }
+    },
+    {
+      "id": "3d-buildings-all",
+      "type": "fill-extrusion",
+      "source": "orbit-india-source",
+      "source-layer": "building",
+      "minzoom": 13,
+      "paint": {
+        "fill-extrusion-color": "#1E1B4B",
+        "fill-extrusion-height": ["coalesce", ["get", "render_height"], ["get", "height"], 16],
+        "fill-extrusion-base": ["coalesce", ["get", "render_min_height"], ["get", "min_height"], 0],
+        "fill-extrusion-opacity": 0.85
+      }
+    }
+  ]
+}
