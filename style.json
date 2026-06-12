@@ -4,9 +4,7 @@
   "sources": {
     "satellite-source": {
       "type": "raster",
-      "tiles": [
-        "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
-      ],
+      "tiles": ["https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"],
       "tileSize": 256
     },
     "orbit-india-source": {
@@ -29,8 +27,14 @@
       "source-layer": "transportation",
       "paint": {
         "line-color": "#00F2FE", 
-        "line-width": 1.8,
-        "line-opacity": 0.8
+        "line-width": [
+          "interpolate", ["linear"], ["zoom"],
+          10, 2.0,
+          14, 4.5,
+          18, 8.0
+        ],
+        "line-opacity": 0.9,
+        "line-blur": 0.5
       }
     },
     {
@@ -40,10 +44,10 @@
       "source-layer": "building",
       "minzoom": 13,
       "paint": {
-        "fill-extrusion-color": "#FFFFFF",
-        "fill-extrusion-height": ["coalesce", ["get", "render_height"], ["get", "height"], 16],
+        "fill-extrusion-color": "#22D3EE", 
+        "fill-extrusion-height": ["coalesce", ["get", "render_height"], ["get", "height"], 25],
         "fill-extrusion-base": ["coalesce", ["get", "render_min_height"], ["get", "min_height"], 0],
-        "fill-extrusion-opacity": 0.3
+        "fill-extrusion-opacity": 0.65
       }
     }
   ]
